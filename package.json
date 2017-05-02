@@ -5,7 +5,8 @@
   "license": "MIT",
   "repository": "b52/electron-es6-react",
   "scripts": {
-    "start": "electron -r babel-register ."
+    "start": "electron -r babel-register .",
+    "pack": "mkdir dist -p && cd dist && electron-packager -r babel-register .. --overwrite"
   },
   "precompile": "",
   "dependencies": {
