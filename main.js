@@ -1,29 +1,49 @@
-import {app, BrowserWindow} from 'electron';
-import connect from 'connect';
-import serveStatic from 'serve-static';
+'use strict';
 
-let port = null;
-let mainWindow = null;
+var electron = require('electron');
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var fs = require('fs');
+var path = require('path');
 
-const server = connect()
-    .use(serveStatic('./node_modules/awesomest-board/dist'))
-    .listen(() => {
-        port = server.address().port;
+var port = null;
+var mainWindow = null;
 
-        app.on('ready', () => {
-            require('./node_modules/awesomest-board-backend/dist/server');
+var paths = [
+    './node_modules/',
+    './resources/app/node_modules/'
+].filter(fs.existsSync);
 
-            mainWindow = new BrowserWindow({width: 800, height: 600});
-            mainWindow.loadURL('http://localhost:' + port);
-            mainWindow.on('closed', () => {
-                mainWindow = null;
+if (paths.length > 0) {
+    const dist_path = path.join(paths[0], 'awesomest-board/dist');
+    console.log('Serving ', dist_path);
+
+    const server = connect()
+        .use(serveStatic(dist_path))
+        .listen(function () {
+            port = server.address().port;
+            console.log(server.address());
+            console.log('React code served at ', port);
+
+            electron.app.on('ready', function () {
+                require('./node_modules/awesomest-board-backend/dist/server');
+
+                mainWindow = new electron.BrowserWindow({width: 800, height: 600});
+                mainWindow.loadURL('http://localhost:' + port);
+                mainWindow.on('closed', function () {
+                    mainWindow = null;
+                });
             });
         });
-    });
 
-app.on('window-all-closed', () => {
+} else {
+    console.log('path not found');
+}
+
+
+electron.app.on('window-all-closed', function () {
     if (process.platform != 'darwin') {
-        app.quit();
+        electron.app.quit();
     }
 });
 
