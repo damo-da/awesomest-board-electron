@@ -1,5 +1,5 @@
 {
-  "name": "electron-es6-react",
+  "name": "awesomest-board-electron",
   "version": "0.1.0",
   "main": "main.js",
   "license": "MIT",
@@ -7,14 +7,20 @@
   "scripts": {
     "start": "electron -r babel-register ."
   },
+  "precompile": "",
   "dependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
+    "connect": "^3.6.1",
+    "electron": "^1.6.6",
+    "express": "^4.15.2",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "serve-static": "^1.12.2"
   },
   "devDependencies": {
+    "awesomest-board": "git+ssh://git@github.com/nichipedia/team6.git",
     "electron": "^1.4.3"
   }
 }
