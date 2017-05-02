@@ -9,7 +9,10 @@
   },
   "precompile": "",
   "dependencies": {
+    "awesomest-board": "git+https://github.com/underscoredam/awesomest-board.git",
+    "awesomest-board-backend": "git+https://github.com/underscoredam/awesomest-board-backend.git",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
     "connect": "^3.6.1",
@@ -20,7 +23,6 @@
     "serve-static": "^1.12.2"
   },
   "devDependencies": {
-    "awesomest-board": "git+ssh://git@github.com/nichipedia/team6.git",
     "electron": "^1.4.3"
   }
 }

@@ -19,6 +19,8 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
+    require('./node_modules/awesomest-board-backend/dist/server');
+
   mainWindow = new BrowserWindow({width: 800, height: 600});
   mainWindow.loadURL('http://localhost:'+PORT);
   mainWindow.on('closed', () => {
